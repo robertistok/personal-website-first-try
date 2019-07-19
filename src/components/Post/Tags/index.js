@@ -1,2 +1,2 @@
 // @flow
-export { default } from './Tags';
+export { default } from "./Tags";
