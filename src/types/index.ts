@@ -51,4 +51,9 @@ export interface AllMarkdownRemark {
   }[];
 }
 
+export interface Icon {
+  viewBox?: string;
+  path?: string;
+}
+
 export type MarkdownRemark = Node;

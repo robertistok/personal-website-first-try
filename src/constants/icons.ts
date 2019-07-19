@@ -1,8 +1,7 @@
+import { Icon as IconType } from "../types";
+
 interface IconsType {
-  [key: string]: {
-    path: string;
-    viewBox: string;
-  };
+  [key: string]: IconType;
 }
 
 const ICONS: IconsType = {
