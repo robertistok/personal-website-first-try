@@ -1,12 +1,11 @@
-// @flow
 import React from "react";
 import renderer from "react-test-renderer";
 import Page from "./Page";
 
 describe("Page", () => {
   const props = {
-    children: "test",
-    title: "test",
+    children: () => <span>test</span>,
+    title: "test"
   };
 
   it("renders correctly", () => {
