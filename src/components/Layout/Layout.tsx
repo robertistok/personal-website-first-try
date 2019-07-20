@@ -9,7 +9,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FunctionComponent<LayoutProps> = ({ children, title, description }) => (
-  <div className={styles.layout}>
+  <div className={styles["layout"]}>
     <Helmet>
       <html lang="en" />
       <title>{title}</title>
