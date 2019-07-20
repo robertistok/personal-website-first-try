@@ -1,10 +1,9 @@
-// @flow
 import React from "react";
 import { getContactHref } from "../../../utils";
 import styles from "./Author.module.scss";
 import { useSiteMetadata } from "../../../hooks";
 
-const Author = () => {
+const Author: React.FunctionComponent = () => {
   const { author } = useSiteMetadata();
 
   return (
