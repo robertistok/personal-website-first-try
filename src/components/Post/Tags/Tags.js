@@ -3,10 +3,10 @@ import React from "react";
 import { Link } from "gatsby";
 import styles from "./Tags.module.scss";
 
-type Props = {
+interface Props {
   tags: string[],
   tagSlugs: string[]
-};
+}
 
 const Tags = ({ tags, tagSlugs }: Props) => (
   <div className={styles["tags"]}>

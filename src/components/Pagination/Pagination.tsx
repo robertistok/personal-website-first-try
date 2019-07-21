@@ -18,7 +18,7 @@ const Pagination: React.FunctionComponent<PaginationProps> = ({
   nextPagePath,
   hasNextPage,
   hasPrevPage
-}) => {
+}: PaginationProps): React.ReactElement => {
   const prevClassName = cx({
     "pagination__prev-link": true,
     "pagination__prev-link--disable": !hasPrevPage

@@ -8,9 +8,9 @@ interface FeedProps {
   edges: Edge[];
 }
 
-const Feed: React.FunctionComponent<FeedProps> = ({ edges }) => (
+const Feed: React.FunctionComponent<FeedProps> = ({ edges }: FeedProps): React.ReactElement => (
   <div className={styles["feed"]}>
-    {edges.map(edge => (
+    {edges.map((edge) => (
       <div className={styles["feed__item"]} key={edge.node.fields.slug}>
         <div className={styles["feed__item-meta"]}>
           <time

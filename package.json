@@ -10,7 +10,7 @@
     "clean": "rimraf .cache public",
     "flow": "flow",
     "flow-typed": "flow-typed install",
-    "lint:js": "eslint --cache --ext .js,.jsx . --fix",
+    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx . --fix",
     "lint:scss": "stylelint \"src/**/*.scss\"",
     "lint": "concurrently \"npm run lint:js\" \"npm run lint:scss\" \"npm flow\"",
     "test": "jest --config ./jest/jest-config.js",

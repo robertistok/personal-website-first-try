@@ -3,9 +3,13 @@ import styles from "./Page.module.scss";
 
 interface PageProps {
   title?: string;
+  children?: React.ReactNode;
 }
 
-const Page: React.FunctionComponent<PageProps> = ({ title, children }) => {
+const Page: React.FunctionComponent<PageProps> = ({
+  title,
+  children
+}: PageProps): React.ReactElement => {
   const pageRef = useRef(null);
 
   useEffect(() => {

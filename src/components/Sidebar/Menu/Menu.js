@@ -3,12 +3,12 @@ import React from "react";
 import { Link } from "gatsby";
 import styles from "./Menu.module.scss";
 
-type Props = {
+interface Props {
   menu: {
     label: string,
     path: string
   }[]
-};
+}
 
 const Menu = ({ menu }: Props) => (
   <nav className={styles["menu"]}>

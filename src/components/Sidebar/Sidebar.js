@@ -7,9 +7,9 @@ import Menu from "./Menu";
 import styles from "./Sidebar.module.scss";
 import { useSiteMetadata } from "../../hooks";
 
-type Props = {
+interface Props {
   isIndex?: boolean,
-};
+}
 
 const Sidebar = ({ isIndex }: Props) => {
   const { author, copyright, menu } = useSiteMetadata();

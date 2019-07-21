@@ -7,7 +7,10 @@ interface CommentsProps {
   postSlug?: string;
 }
 
-const Comments: React.FunctionComponent<CommentsProps> = ({ postTitle, postSlug }) => {
+const Comments: React.FunctionComponent<CommentsProps> = ({
+  postTitle,
+  postSlug
+}: CommentsProps): React.ReactElement => {
   const { url, disqusShortname } = useSiteMetadata();
 
   if (!disqusShortname) {

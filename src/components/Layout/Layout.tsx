@@ -8,7 +8,11 @@ interface LayoutProps {
   description?: string;
 }
 
-const Layout: React.FunctionComponent<LayoutProps> = ({ children, title, description }) => (
+const Layout: React.FunctionComponent<LayoutProps> = ({
+  children,
+  title,
+  description
+}: LayoutProps): React.ReactElement => (
   <div className={styles["layout"]}>
     <Helmet>
       <html lang="en" />
