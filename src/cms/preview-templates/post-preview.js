@@ -1,12 +1,8 @@
+/* eslint-disable react/prop-types */
+
 import React from "react";
-import { Entry, WidgetFor } from "../../types";
 
-interface PostPreviewProps {
-  entry: Entry;
-  widgetFor: WidgetFor;
-}
-
-const PostPreview: React.FunctionComponent<PostPreviewProps> = ({ entry, widgetFor }) => {
+const PostPreview = ({ entry, widgetFor }) => {
   const body = widgetFor("body");
   const title = entry.getIn(["data", "title"]);
 
