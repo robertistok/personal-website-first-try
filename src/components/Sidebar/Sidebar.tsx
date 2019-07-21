@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import Author from "./Author";
 import Contacts from "./Contacts";
@@ -7,11 +6,13 @@ import Menu from "./Menu";
 import styles from "./Sidebar.module.scss";
 import { useSiteMetadata } from "../../hooks";
 
-interface Props {
-  isIndex?: boolean,
+interface SidebarProps {
+  isIndex?: boolean;
 }
 
-const Sidebar = ({ isIndex }: Props) => {
+const Sidebar: React.FunctionComponent<SidebarProps> = ({
+  isIndex
+}: SidebarProps): React.ReactElement => {
   const { author, copyright, menu } = useSiteMetadata();
 
   return (

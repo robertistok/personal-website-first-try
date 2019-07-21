@@ -1,19 +1,20 @@
-// @flow
 import React from "react";
 import { getContactHref, getIcon } from "../../../utils";
 import Icon from "../../Icon";
 import styles from "./Contacts.module.scss";
 
-interface Props {
+interface ContactsProps {
   contacts: {
-    [string]: string,
-  },
+    [key: string]: string;
+  };
 }
 
-const Contacts = ({ contacts }: Props) => (
+const Contacts: React.FunctionComponent<ContactsProps> = ({
+  contacts
+}: ContactsProps): React.ReactElement => (
   <div className={styles["contacts"]}>
     <ul className={styles["contacts__list"]}>
-      {Object.keys(contacts).map((name) => (
+      {Object.keys(contacts).map(name => (
         <li className={styles["contacts__list-item"]} key={name}>
           <a
             className={styles["contacts__list-item-link"]}
