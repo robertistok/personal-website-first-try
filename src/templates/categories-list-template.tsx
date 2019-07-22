@@ -15,13 +15,15 @@ const CategoriesListTemplate: React.FunctionComponent = (): React.ReactElement =
       <Sidebar />
       <Page title="Categories">
         <ul>
-          {categories.map(category => (
-            <li key={category.fieldValue}>
-              <Link to={`/category/${kebabCase(category.fieldValue)}/`}>
-                {category.fieldValue} ({category.totalCount})
-              </Link>
-            </li>
-          ))}
+          {categories.map(
+            (category): React.ReactElement => (
+              <li key={category.fieldValue}>
+                <Link to={`/category/${kebabCase(category.fieldValue)}/`}>
+                  {category.fieldValue} ({category.totalCount})
+                </Link>
+              </li>
+            )
+          )}
         </ul>
       </Page>
     </Layout>

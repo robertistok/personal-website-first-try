@@ -12,7 +12,7 @@ const Page: React.FunctionComponent<PageProps> = ({
 }: PageProps): React.ReactElement => {
   const pageRef = useRef(null);
 
-  useEffect(() => {
+  useEffect((): void => {
     pageRef.current.scrollIntoView();
   });
 

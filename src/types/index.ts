@@ -56,4 +56,4 @@ export interface Icon {
   path?: string;
 }
 
-export type MarkdownRemark = { markdownRemark: Node };
+export type MarkdownRemark = Node;

@@ -1,7 +1,7 @@
-import { ICONS } from "../constants";
+import ICONS, { IconsType } from "../constants/Icons";
 
-const getIcon = (name: string) => {
-  let icon;
+const getIcon = (name: string): IconsType[keyof IconsType] => {
+  let icon: IconsType[keyof IconsType];
 
   switch (name) {
     case "twitter":

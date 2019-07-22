@@ -8,10 +8,10 @@ import Pagination from "../components/Pagination";
 import { useSiteMetadata } from "../hooks";
 import { AllMarkdownRemark, PageContext } from "../types";
 
-type TagTemplateProps = {
+interface TagTemplateProps {
   data: AllMarkdownRemark;
   pageContext: PageContext;
-};
+}
 
 const TagTemplate: React.FunctionComponent<TagTemplateProps> = ({
   data,

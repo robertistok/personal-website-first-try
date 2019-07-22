@@ -1,7 +1,13 @@
 import { Icon as IconType } from "../types";
 
-interface IconsType {
-  [key: string]: IconType;
+export interface IconsType {
+  TWITTER: IconType;
+  FACEBOOK: IconType;
+  TELEGRAM: IconType;
+  VKONTAKTE: IconType;
+  GITHUB: IconType;
+  EMAIL: IconType;
+  RSS: IconType;
 }
 
 const ICONS: IconsType = {

@@ -14,13 +14,15 @@ const Tags: React.FunctionComponent<TagsProps> = ({
   <div className={styles["tags"]}>
     <ul className={styles["tags__list"]}>
       {tagSlugs &&
-        tagSlugs.map((slug, i) => (
-          <li className={styles["tags__list-item"]} key={tags[i]}>
-            <Link to={slug} className={styles["tags__list-item-link"]}>
-              {tags[i]}
-            </Link>
-          </li>
-        ))}
+        tagSlugs.map(
+          (slug, i): React.ReactElement => (
+            <li className={styles["tags__list-item"]} key={tags[i]}>
+              <Link to={slug} className={styles["tags__list-item-link"]}>
+                {tags[i]}
+              </Link>
+            </li>
+          )
+        )}
     </ul>
   </div>
 );

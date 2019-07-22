@@ -6,7 +6,9 @@ import { useSiteMetadata } from "../hooks";
 import { MarkdownRemark } from "../types";
 
 interface PostTemplateProps {
-  data: MarkdownRemark;
+  data: {
+    markdownRemark: MarkdownRemark;
+  };
 }
 
 const PostTemplate: React.FunctionComponent<PostTemplateProps> = ({
