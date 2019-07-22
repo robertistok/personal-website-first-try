@@ -1,4 +1,4 @@
-import ICONS, { IconsType } from "../constants/Icons";
+import ICONS, { IconsType } from "../constants/icons";
 
 const getIcon = (name: string): IconsType[keyof IconsType] => {
   let icon: IconsType[keyof IconsType];
