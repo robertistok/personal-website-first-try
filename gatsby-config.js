@@ -192,7 +192,6 @@ module.exports = {
         }
       }
     },
-    "gatsby-plugin-flow",
     "gatsby-plugin-typescript"
   ]
 };
