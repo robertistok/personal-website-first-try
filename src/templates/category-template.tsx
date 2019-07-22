@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/Layout";
@@ -7,32 +6,38 @@ import Feed from "../components/Feed";
 import Page from "../components/Page";
 import Pagination from "../components/Pagination";
 import { useSiteMetadata } from "../hooks";
-import type { PageContext, AllMarkdownRemark } from "../types";
+import { PageContext, AllMarkdownRemark } from "../types";
 
-type Props = {
-  data: AllMarkdownRemark,
-  pageContext: PageContext
-};
+interface CategoryTemplateProps {
+  data: AllMarkdownRemark;
+  pageContext: PageContext;
+}
 
-const IndexTemplate = ({ data, pageContext }: Props) => {
+const CategoryTemplate: React.FunctionComponent<CategoryTemplateProps> = ({
+  data,
+  pageContext
+}: CategoryTemplateProps): React.ReactElement => {
   const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
 
   const {
+    category,
     currentPage,
-    hasNextPage,
-    hasPrevPage,
     prevPagePath,
-    nextPagePath
+    nextPagePath,
+    hasPrevPage,
+    hasNextPage
   } = pageContext;
 
-
   const { edges } = data.allMarkdownRemark;
-  const pageTitle = currentPage > 0 ? `Posts - Page ${currentPage} - ${siteTitle}` : siteTitle;
+  const pageTitle =
+    currentPage > 0
+      ? `${category} - Page ${currentPage} - ${siteTitle}`
+      : `${category} - ${siteTitle}`;
 
   return (
     <Layout title={pageTitle} description={siteSubtitle}>
-      <Sidebar isIndex />
-      <Page>
+      <Sidebar />
+      <Page title={category}>
         <Feed edges={edges} />
         <Pagination
           prevPagePath={prevPagePath}
@@ -46,24 +51,26 @@ const IndexTemplate = ({ data, pageContext }: Props) => {
 };
 
 export const query = graphql`
-  query IndexTemplate($postsLimit: Int!, $postsOffset: Int!) {
+  query CategoryPage($category: String, $postsLimit: Int!, $postsOffset: Int!) {
     allMarkdownRemark(
-        limit: $postsLimit,
-        skip: $postsOffset,
-        filter: { frontmatter: { template: { eq: "post" }, draft: { ne: true } } },
-        sort: { order: DESC, fields: [frontmatter___date] }
-      ){
+      limit: $postsLimit
+      skip: $postsOffset
+      filter: {
+        frontmatter: { category: { eq: $category }, template: { eq: "post" }, draft: { ne: true } }
+      }
+      sort: { order: DESC, fields: [frontmatter___date] }
+    ) {
       edges {
         node {
           fields {
-            slug
             categorySlug
+            slug
           }
           frontmatter {
-            title
             date
-            category
             description
+            category
+            title
           }
         }
       }
@@ -71,4 +78,4 @@ export const query = graphql`
   }
 `;
 
-export default IndexTemplate;
+export default CategoryTemplate;

@@ -3,13 +3,15 @@ import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import Post from "../components/Post";
 import { useSiteMetadata } from "../hooks";
-import type { MarkdownRemark } from "../types";
+import { MarkdownRemark } from "../types";
 
-type Props = {
-  data: MarkdownRemark
-};
+interface PostTemplateProps {
+  data: MarkdownRemark;
+}
 
-const PostTemplate = ({ data }: Props) => {
+const PostTemplate: React.FunctionComponent<PostTemplateProps> = ({
+  data
+}: PostTemplateProps): React.ReactElement => {
   const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
   const { title: postTitle, description: postDescription } = data.markdownRemark.frontmatter;
   const metaDescription = postDescription !== null ? postDescription : siteSubtitle;
@@ -20,7 +22,6 @@ const PostTemplate = ({ data }: Props) => {
     </Layout>
   );
 };
-
 
 export const query = graphql`
   query PostBySlug($slug: String!) {
@@ -40,6 +41,5 @@ export const query = graphql`
     }
   }
 `;
-
 
 export default PostTemplate;
