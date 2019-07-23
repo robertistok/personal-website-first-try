@@ -1,8 +1,10 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+
 import Icon from "./Icon";
 
-describe("Icon", () => {
+describe("<Icon />", () => {
   const props = {
     icon: {
       viewBox: "0 0 0 0",
@@ -10,8 +12,12 @@ describe("Icon", () => {
     }
   };
 
-  it("renders correctly", () => {
-    const tree = renderer.create(<Icon {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders", () => {
+    shallow(<Icon {...props} />);
+  });
+
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<Icon {...props} />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });

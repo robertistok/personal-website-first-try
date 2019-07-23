@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Layout /> renders and matches snapshot 1`] = `
+<div
+  className="layout"
+>
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <html
+      lang="en"
+    />
+    <title>
+      test
+    </title>
+    <meta
+      content="test"
+      name="description"
+    />
+    <meta
+      content="test"
+      property="og:site_name"
+    />
+    <meta
+      content="summary"
+      name="twitter:card"
+    />
+    <meta
+      content="test"
+      name="twitter:title"
+    />
+  </HelmetWrapper>
+  test
+</div>
+`;

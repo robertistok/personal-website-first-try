@@ -1,8 +1,10 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+
 import Pagination from "./Pagination";
 
-describe("Pagination", () => {
+describe("<Pagination />", () => {
   const props = {
     prevPagePath: "/page/1",
     nextPagePath: "/page/3",
@@ -10,8 +12,12 @@ describe("Pagination", () => {
     hasPrevPage: true
   };
 
-  it("renders correctly", () => {
-    const tree = renderer.create(<Pagination {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders", () => {
+    shallow(<Pagination {...props} />);
+  });
+
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<Pagination {...props} />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });
