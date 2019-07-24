@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PostTemplate /> renders and matches snapshot 1`] = `
+<Layout
+  description="test"
+  title="test - Test title"
+>
+  <Post
+    post={
+      Object {
+        "fields": Object {
+          "tagSlugs": Array [
+            "/test_0",
+            "/test_1",
+          ],
+        },
+        "frontmatter": Object {
+          "date": "2016-09-01",
+          "description": "test",
+          "tags": Array [
+            "test_0",
+            "test_1",
+          ],
+          "title": "test",
+        },
+        "html": "<p>test</p>",
+        "id": "test-123",
+      }
+    }
+  />
+</Layout>
+`;

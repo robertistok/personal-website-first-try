@@ -1,13 +1,14 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { useStaticQuery, StaticQuery } from "gatsby";
+import { useStaticQuery } from "gatsby";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+
 import CategoryTemplate from "./category-template";
 import siteMetadata from "../../jest/__fixtures__/site-metadata";
 import allMarkdownRemark from "../../jest/__fixtures__/all-markdown-remark";
 import pageContext from "../../jest/__fixtures__/page-context";
-import { RenderCallback } from "../types";
 
-describe("CategoryTemplate", () => {
+describe("<CategoryTemplate />", () => {
   const props = {
     data: {
       ...allMarkdownRemark
@@ -15,15 +16,16 @@ describe("CategoryTemplate", () => {
     ...pageContext
   };
 
-  // beforeEach(() => {
-  //   StaticQuery.mockImplementationOnce(
-  //     ({ render }: RenderCallback) => render(siteMetadata),
-  //     useStaticQuery.mockReturnValue(siteMetadata)
-  //   );
-  // });
+  beforeEach(() => {
+    (useStaticQuery as jest.Mock).mockReturnValue(siteMetadata);
+  });
 
-  it("renders correctly", () => {
-    const tree = renderer.create(<CategoryTemplate {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders", () => {
+    shallow(<CategoryTemplate {...props} />);
+  });
+
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<CategoryTemplate {...props} />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });

@@ -1,27 +1,29 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { useStaticQuery, StaticQuery } from "gatsby";
+import { useStaticQuery } from "gatsby";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+
 import PageTemplate from "./page-template";
 import siteMetadata from "../../jest/__fixtures__/site-metadata";
 import markdownRemark from "../../jest/__fixtures__/markdown-remark";
-import { RenderCallback } from "../types";
 
-describe("PageTemplate", () => {
+describe("<PageTemplate />", () => {
   const props = {
     data: {
       ...markdownRemark
     }
   };
 
-  // beforeEach(() => {
-  //   StaticQuery.mockImplementationOnce(
-  //     ({ render }: RenderCallback) => render(siteMetadata),
-  //     useStaticQuery.mockReturnValue(siteMetadata)
-  //   );
-  // });
+  beforeEach(() => {
+    (useStaticQuery as jest.Mock).mockReturnValue(siteMetadata);
+  });
 
-  it("renders correctly", () => {
-    const tree = renderer.create(<PageTemplate {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders", () => {
+    shallow(<PageTemplate {...props} />);
+  });
+
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<PageTemplate {...props} />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });

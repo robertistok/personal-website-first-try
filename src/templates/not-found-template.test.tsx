@@ -1,20 +1,22 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { useStaticQuery, StaticQuery } from "gatsby";
+import { useStaticQuery } from "gatsby";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+
 import NotFoundTemplate from "./not-found-template";
 import siteMetadata from "../../jest/__fixtures__/site-metadata";
-import { RenderCallback } from "../types";
 
-describe("NotFoundTemplate", () => {
-  // beforeEach(() => {
-  //   StaticQuery.mockImplementationOnce(
-  //     ({ render }: RenderCallback) => render(siteMetadata),
-  //     useStaticQuery.mockReturnValue(siteMetadata)
-  //   );
-  // });
+describe("<NotFoundTemplate />", () => {
+  beforeEach(() => {
+    (useStaticQuery as jest.Mock).mockReturnValue(siteMetadata);
+  });
 
-  it("renders correctly", () => {
-    const tree = renderer.create(<NotFoundTemplate />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders", () => {
+    shallow(<NotFoundTemplate />);
+  });
+
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<NotFoundTemplate />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });

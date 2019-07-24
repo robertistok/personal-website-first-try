@@ -1,26 +1,26 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { useStaticQuery, StaticQuery } from "gatsby";
+import { useStaticQuery } from "gatsby";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+
 import TagsListTemplate from "./tags-list-template";
 import siteMetadata from "../../jest/__fixtures__/site-metadata";
 import allMarkdownRemark from "../../jest/__fixtures__/all-markdown-remark";
-import { RenderCallback } from "../types";
 
-describe("TagsListTemplate", () => {
-  const props = {
-    ...siteMetadata,
-    ...allMarkdownRemark
-  };
+describe("<TagsListTemplate />", () => {
+  beforeEach(() => {
+    (useStaticQuery as jest.Mock).mockReturnValue({
+      ...siteMetadata,
+      ...allMarkdownRemark
+    });
+  });
 
-  // beforeEach(() => {
-  //   StaticQuery.mockImplementationOnce(
-  //     ({ render }: RenderCallback) => render(props),
-  //     useStaticQuery.mockReturnValue(props)
-  //   );
-  // });
+  it("renders", () => {
+    shallow(<TagsListTemplate />);
+  });
 
-  it("renders correctly", () => {
-    const tree = renderer.create(<TagsListTemplate />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<TagsListTemplate />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });

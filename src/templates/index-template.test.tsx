@@ -1,13 +1,14 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { StaticQuery, useStaticQuery } from "gatsby";
+import { useStaticQuery } from "gatsby";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+
 import IndexTemplate from "./index-template";
 import siteMetadata from "../../jest/__fixtures__/site-metadata";
 import allMarkdownRemark from "../../jest/__fixtures__/all-markdown-remark";
 import pageContext from "../../jest/__fixtures__/page-context";
-import { RenderCallback } from "../types";
 
-describe("IndexTemplate", () => {
+describe("<IndexTemplate />", () => {
   const props = {
     data: {
       ...allMarkdownRemark
@@ -15,15 +16,16 @@ describe("IndexTemplate", () => {
     ...pageContext
   };
 
-  // beforeEach(() => {
-  //   StaticQuery.mockImplementationOnce(
-  //     ({ render }: RenderCallback) => render(siteMetadata),
-  //     useStaticQuery.mockReturnValue(siteMetadata)
-  //   );
-  // });
+  beforeEach(() => {
+    (useStaticQuery as jest.Mock).mockReturnValue(siteMetadata);
+  });
 
-  it("renders correctly", () => {
-    const tree = renderer.create(<IndexTemplate {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders", () => {
+    shallow(<IndexTemplate {...props} />);
+  });
+
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<IndexTemplate {...props} />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });

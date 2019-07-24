@@ -1,26 +1,23 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { useStaticQuery, StaticQuery } from "gatsby";
+import { useStaticQuery } from "gatsby";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+
 import CategoriesListTemplate from "./categories-list-template";
 import siteMetadata from "../../jest/__fixtures__/site-metadata";
 import allMarkdownRemark from "../../jest/__fixtures__/all-markdown-remark";
-import { RenderCallback } from "../types";
 
-describe("CategoriesListTemplate", () => {
-  const props = {
-    ...siteMetadata,
-    ...allMarkdownRemark
-  };
+describe("<CategoriesListTemplate />", () => {
+  beforeEach(() => {
+    (useStaticQuery as jest.Mock).mockReturnValue({ ...siteMetadata, ...allMarkdownRemark });
+  });
 
-  // beforeEach(() => {
-  //   StaticQuery.mockImplementationOnce(
-  //     ({ render }: RenderCallback) => render(props),
-  //     useStaticQuery.mockReturnValue(props)
-  //   );
-  // });
+  it("renders", () => {
+    shallow(<CategoriesListTemplate />);
+  });
 
-  it("renders correctly", () => {
-    const tree = renderer.create(<CategoriesListTemplate />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<CategoriesListTemplate />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });
