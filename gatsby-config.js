@@ -192,6 +192,14 @@ module.exports = {
         }
       }
     },
-    "gatsby-plugin-typescript"
+
+    // TypeScript
+    "gatsby-plugin-typescript",
+    {
+      resolve: "gatsby-plugin-generate-typings",
+      options: {
+        dest: "./src/generated/graphql-types.d.ts"
+      }
+    }
   ]
 };
