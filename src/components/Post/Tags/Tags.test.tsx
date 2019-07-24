@@ -1,15 +1,21 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+
 import Tags from "./Tags";
 
 describe("Tags", () => {
-  it("renders correctly", () => {
-    const props = {
-      tags: ["test_0", "test_1"],
-      tagSlugs: ["/test_0", "/test_1"]
-    };
+  const props = {
+    tags: ["test_0", "test_1"],
+    tagSlugs: ["/test_0", "/test_1"]
+  };
 
-    const tree = renderer.create(<Tags {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders", () => {
+    shallow(<Tags {...props} />);
+  });
+
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<Tags {...props} />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });

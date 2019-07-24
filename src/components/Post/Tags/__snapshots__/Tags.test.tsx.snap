@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tags renders correctly 1`] = `
+exports[`Tags renders and matches snapshot 1`] = `
 <div
   className="tags"
 >
@@ -9,23 +9,25 @@ exports[`Tags renders correctly 1`] = `
   >
     <li
       className="tags__list-item"
+      key="test_0"
     >
-      <a
+      <mockConstructor
         className="tags__list-item-link"
-        href="/test_0"
+        to="/test_0"
       >
         test_0
-      </a>
+      </mockConstructor>
     </li>
     <li
       className="tags__list-item"
+      key="test_1"
     >
-      <a
+      <mockConstructor
         className="tags__list-item-link"
-        href="/test_1"
+        to="/test_1"
       >
         test_1
-      </a>
+      </mockConstructor>
     </li>
   </ul>
 </div>
