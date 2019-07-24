@@ -1,24 +1,22 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { useStaticQuery, StaticQuery } from "gatsby";
+import { useStaticQuery } from "gatsby";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+
 import Sidebar from "./Sidebar";
 import siteMetadata from "../../../jest/__fixtures__/site-metadata";
-import { RenderCallback } from "../../types";
 
-describe("Sidebar", () => {
-  // beforeEach(() => {
-  //   StaticQuery.mockImplementationOnce(
-  //     ({ render }: RenderCallback) => render(siteMetadata),
-  //     useStaticQuery.mockReturnValue(siteMetadata)
-  //   );
-  // });
+describe("<Sidebar />", () => {
+  beforeEach(() => {
+    (useStaticQuery as jest.Mock).mockReturnValue(siteMetadata);
+  });
 
-  const props = {
-    isIndex: true
-  };
+  it("renders", () => {
+    shallow(<Sidebar />);
+  });
 
-  it("renders correctly", () => {
-    const tree = renderer.create(<Sidebar {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<Sidebar />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });

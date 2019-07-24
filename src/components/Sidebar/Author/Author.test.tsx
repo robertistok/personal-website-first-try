@@ -1,8 +1,10 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+
 import Author from "./Author";
 
-describe("Author", () => {
+describe("<Author />", () => {
   const props = {
     author: {
       name: "test",
@@ -12,8 +14,12 @@ describe("Author", () => {
     isIndex: false
   };
 
-  it("renders correctly", () => {
-    const tree = renderer.create(<Author {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders", () => {
+    shallow(<Author {...props} />);
+  });
+
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<Author {...props} />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });

@@ -1,20 +1,22 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { useStaticQuery, StaticQuery } from "gatsby";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+import { useStaticQuery } from "gatsby";
+
 import Author from "./Author";
 import siteMetadata from "../../../../jest/__fixtures__/site-metadata";
-import { RenderCallback } from "../../../types";
 
-describe("Author", () => {
+describe("<Author />", () => {
   beforeEach(() => {
-    (StaticQuery as jest.Mock)(
-      ({ render }): RenderCallback => render(siteMetadata),
-      (useStaticQuery as jest.Mock).mockReturnValue(siteMetadata)
-    );
+    (useStaticQuery as jest.Mock).mockReturnValue(siteMetadata);
   });
 
-  it("renders correctly", () => {
-    const tree = renderer.create(<Author />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders", () => {
+    shallow(<Author />);
+  });
+
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<Author />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });

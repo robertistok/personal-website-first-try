@@ -1,17 +1,15 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { useStaticQuery, StaticQuery } from "gatsby";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+import { useStaticQuery } from "gatsby";
+
 import Post from "./Post";
 import siteMetadata from "../../../jest/__fixtures__/site-metadata";
-import { RenderCallback } from "../../types";
 
-describe("Post", () => {
-  // beforeEach(() => {
-  //   (StaticQuery as jest.mock).mockImplementationOnce(
-  //     ({ render }): RenderCallback => render(siteMetadata),
-  //     useStaticQuery.mockReturnValue(siteMetadata)
-  //   );
-  // });
+describe("<Post />", () => {
+  beforeEach(() => {
+    (useStaticQuery as jest.Mock).mockReturnValue(siteMetadata);
+  });
 
   const props = {
     post: {
@@ -30,8 +28,12 @@ describe("Post", () => {
     }
   };
 
-  it("renders correctly", () => {
-    const tree = renderer.create(<Post {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders", () => {
+    shallow(<Post {...props} />);
+  });
+
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<Post {...props} />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });

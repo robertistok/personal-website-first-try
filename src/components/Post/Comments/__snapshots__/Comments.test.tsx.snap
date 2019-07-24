@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Comments /> renders and matches snapshot 1`] = `
+<DisqusThread
+  identifier="test"
+  shortname="Test disquesShortname"
+  title="test"
+  url="http://localhost/test"
+/>
+`;

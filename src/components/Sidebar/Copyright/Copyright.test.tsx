@@ -1,14 +1,18 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+
 import Copyright from "./Copyright";
 
-describe("Copyright", () => {
-  it("renders correctly", () => {
-    const props = {
-      copyright: "copyright"
-    };
+describe("<Copyright />", () => {
+  const props = { copyright: "test copyright" };
 
-    const tree = renderer.create(<Copyright {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders", () => {
+    shallow(<Copyright {...props} />);
+  });
+
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<Copyright {...props} />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });

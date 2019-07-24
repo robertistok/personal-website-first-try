@@ -1,15 +1,21 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
+
 import Content from "./Content";
 
-describe("Content", () => {
-  it("renders correctly", () => {
-    const props = {
-      title: "test",
-      body: "<p>test</p>"
-    };
+describe("<Content />", () => {
+  const props = {
+    title: "test",
+    body: "<p>test</p>"
+  };
 
-    const tree = renderer.create(<Content {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders", () => {
+    shallow(<Content {...props} />);
+  });
+
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<Content {...props} />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });

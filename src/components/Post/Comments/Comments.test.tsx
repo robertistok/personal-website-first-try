@@ -1,16 +1,14 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { shallow } from "enzyme";
+import toJSON from "enzyme-to-json";
 import { useStaticQuery, StaticQuery } from "gatsby";
+
 import Comments from "./Comments";
 import siteMetadata from "../../../../jest/__fixtures__/site-metadata";
-import { RenderCallback } from "../../../types";
 
-describe("Comments", () => {
+describe.only("<Comments />", () => {
   beforeEach(() => {
-    (StaticQuery as jest.Mock).mockImplementationOnce(
-      ({ render }): RenderCallback => render(siteMetadata)
-      // useStaticQuery.mockReturnValue(siteMetadata)
-    );
+    (useStaticQuery as jest.Mock).mockReturnValue(siteMetadata);
   });
 
   const props = {
@@ -18,8 +16,12 @@ describe("Comments", () => {
     postSlug: "/test"
   };
 
-  it("renders correctly", () => {
-    const tree = renderer.create(<Comments />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("renders", () => {
+    shallow(<Comments {...props} />);
+  });
+
+  it("renders and matches snapshot", () => {
+    const wrapper = shallow(<Comments {...props} />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
   });
 });
