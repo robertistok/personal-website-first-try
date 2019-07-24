@@ -1,7 +1,9 @@
 import { useStaticQuery, graphql } from "gatsby";
 
-const useTagsList = () => {
-  const { allMarkdownRemark } = useStaticQuery(
+import { Query, MarkdownRemarkGroupConnection } from "../generated/graphql-types";
+
+const useTagsList = (): MarkdownRemarkGroupConnection[] => {
+  const { allMarkdownRemark }: Query = useStaticQuery(
     graphql`
       query TagsListQuery {
         allMarkdownRemark(
