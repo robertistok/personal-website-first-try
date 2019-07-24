@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "gatsby";
+
 import styles from "./Menu.module.scss";
+import { SiteSiteMetadataMenu } from "../../../generated/graphql-types";
 
 interface MenuProps {
-  menu: {
-    label: string;
-    path: string;
-  }[];
+  menu: SiteSiteMetadataMenu[];
 }
 
 const Menu: React.FunctionComponent<MenuProps> = ({ menu }: MenuProps): React.ReactElement => (

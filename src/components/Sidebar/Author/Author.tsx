@@ -1,13 +1,11 @@
 import React from "react";
 import { withPrefix, Link } from "gatsby";
+
 import styles from "./Author.module.scss";
+import { SiteSiteMetadataAuthor } from "../../../generated/graphql-types";
 
 interface AuthorProps {
-  author: {
-    name: string;
-    bio: string;
-    photo: string;
-  };
+  author: SiteSiteMetadataAuthor;
   isIndex?: boolean;
 }
 

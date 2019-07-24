@@ -647,14 +647,14 @@ export type FileFieldsEnum =
   'childMarkdownRemark___frontmatter___draft' |
   'childMarkdownRemark___frontmatter___slug' |
   'childMarkdownRemark___frontmatter___category' |
-  'childMarkdownRemark___frontmatter___tags' |
   'childMarkdownRemark___frontmatter___description' |
+  'childMarkdownRemark___frontmatter___tags' |
   'childMarkdownRemark___excerpt' |
   'childMarkdownRemark___rawMarkdownBody' |
   'childMarkdownRemark___fileAbsolutePath' |
   'childMarkdownRemark___fields___slug' |
-  'childMarkdownRemark___fields___tagSlugs' |
   'childMarkdownRemark___fields___categorySlug' |
+  'childMarkdownRemark___fields___tagSlugs' |
   'childMarkdownRemark___html' |
   'childMarkdownRemark___htmlAst' |
   'childMarkdownRemark___excerptAst' |
@@ -1447,8 +1447,8 @@ export type MarkdownRemarkEdge = {
 
 export type MarkdownRemarkFields = {
   slug?: Maybe<Scalars['String']>,
-  tagSlugs?: Maybe<Array<Maybe<Scalars['String']>>>,
   categorySlug?: Maybe<Scalars['String']>,
+  tagSlugs?: Maybe<Array<Maybe<Scalars['String']>>>,
 };
 
 export type MarkdownRemarkFieldsEnum = 
@@ -1544,14 +1544,14 @@ export type MarkdownRemarkFieldsEnum =
   'frontmatter___draft' |
   'frontmatter___slug' |
   'frontmatter___category' |
-  'frontmatter___tags' |
   'frontmatter___description' |
+  'frontmatter___tags' |
   'excerpt' |
   'rawMarkdownBody' |
   'fileAbsolutePath' |
   'fields___slug' |
-  'fields___tagSlugs' |
   'fields___categorySlug' |
+  'fields___tagSlugs' |
   'html' |
   'htmlAst' |
   'excerptAst' |
@@ -1566,8 +1566,8 @@ export type MarkdownRemarkFieldsEnum =
 
 export type MarkdownRemarkFieldsFilterInput = {
   slug?: Maybe<StringQueryOperatorInput>,
-  tagSlugs?: Maybe<StringQueryOperatorInput>,
   categorySlug?: Maybe<StringQueryOperatorInput>,
+  tagSlugs?: Maybe<StringQueryOperatorInput>,
 };
 
 export type MarkdownRemarkFilterInput = {
@@ -1596,8 +1596,8 @@ export type MarkdownRemarkFrontmatter = {
   draft?: Maybe<Scalars['Boolean']>,
   slug?: Maybe<Scalars['String']>,
   category?: Maybe<Scalars['String']>,
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>,
   description?: Maybe<Scalars['String']>,
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>,
 };
 
 
@@ -1615,8 +1615,8 @@ export type MarkdownRemarkFrontmatterFilterInput = {
   draft?: Maybe<BooleanQueryOperatorInput>,
   slug?: Maybe<StringQueryOperatorInput>,
   category?: Maybe<StringQueryOperatorInput>,
-  tags?: Maybe<StringQueryOperatorInput>,
   description?: Maybe<StringQueryOperatorInput>,
+  tags?: Maybe<StringQueryOperatorInput>,
 };
 
 export type MarkdownRemarkGroupConnection = {
