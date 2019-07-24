@@ -1,3 +1,3 @@
 declare module "*.scss" {
-  export const content: { [className: string]: string };
+  export const scss_content_def: { [className: string]: string };
 }
